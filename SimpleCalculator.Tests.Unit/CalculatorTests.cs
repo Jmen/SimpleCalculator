@@ -11,18 +11,14 @@ namespace SimpleCalculator.Tests.Unit
     [TestFixture]
     public class CalculatorTests
     {
-        [Test]
-        public void Calculate_WhenTwoNumbersAdded_ResultIsAddition()
+        [TestCase(1, "+", 1, 2)]
+        public void Calculate_WhenTwoNumbersAdded_ResultIsAddition(int firstNumber, string operation, int secondNumber, int expected)
         {
-            int firstNumber = 1;
-            int secondNumber = 1;
-            string op = "+";
-
             Calculator calculator = new Calculator();
 
-            int result = calculator.Calculate(firstNumber, secondNumber, op);
+            int result = calculator.Calculate(firstNumber, secondNumber, operation);
 
-            Assert.AreEqual(2, result);
+            Assert.AreEqual(expected, result);
         }
     }
 }
