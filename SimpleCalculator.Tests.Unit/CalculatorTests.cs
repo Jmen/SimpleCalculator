@@ -21,5 +21,15 @@ namespace SimpleCalculator.Tests.Unit
 
             Assert.AreEqual(expected, result);
         }
+
+        [TestCase(1, "-", 1, 0)]
+        public void Calculate_WhenTwoNumbersSubtracted_ResultIsSubtraction(int firstNumber, string operation, int secondNumber, int expected)
+        {
+            Calculator calculator = new Calculator();
+
+            int result = calculator.Calculate(firstNumber, secondNumber, operation);
+
+            Assert.AreEqual(expected, result);
+        }
     }
 }

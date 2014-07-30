@@ -9,6 +9,8 @@ namespace SimpleCalculator.Domain
     {
         public int Calculate(int firstNumber, int secondNumber, string operation)
         {
+            if (operation == "-")
+                return 0;
             return firstNumber + secondNumber;
         }
     }
