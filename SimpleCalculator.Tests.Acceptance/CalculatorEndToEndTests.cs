@@ -10,7 +10,7 @@ namespace SimpleCalculator.Tests.Acceptance
     [TestFixture]
     public class CalculatorEndToEndTests
     {
-        [TestCase]
+        [Test]
         public void CalculatorAddsTwoNumbersTogether()
         {
             ApplicationRunner application = new ApplicationRunner();
