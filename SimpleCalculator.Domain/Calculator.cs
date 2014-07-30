@@ -9,9 +9,15 @@ namespace SimpleCalculator.Domain
     {
         public int Calculate(int firstNumber, int secondNumber, string operation)
         {
-            if (operation == "-")
-                return 0;
-            return firstNumber + secondNumber;
+            switch (operation)
+            {
+                case "+":
+                    return firstNumber + secondNumber;
+                case "-":
+                    return firstNumber - secondNumber;
+                default:
+                    throw new Exception("Unknown operator");
+            }
         }
     }
 }

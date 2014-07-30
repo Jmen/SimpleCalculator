@@ -23,6 +23,7 @@ namespace SimpleCalculator.Tests.Unit
         }
 
         [TestCase(1, "-", 1, 0)]
+        [TestCase(2, "-", 1, 1)]
         public void Calculate_WhenTwoNumbersSubtracted_ResultIsSubtraction(int firstNumber, string operation, int secondNumber, int expected)
         {
             Calculator calculator = new Calculator();
