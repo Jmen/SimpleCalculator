@@ -9,7 +9,7 @@ namespace SimpleCalculator.Domain
     {
         public int Calculate(int firstNumber, int secondNumber, string operation)
         {
-            return 2;
+            return firstNumber + secondNumber;
         }
     }
 }
