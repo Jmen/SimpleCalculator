@@ -15,12 +15,17 @@ namespace SimpleCalculator.Tests.Acceptance
         {
             _process = new Process();
 
-            _process.StartInfo.FileName = "SimpleCalculator.Application.exe";
+            _process.StartInfo.FileName = "SimpleCalculator.ConsoleApplication.exe";
             _process.StartInfo.UseShellExecute = false;
             _process.StartInfo.RedirectStandardOutput = true;
             _process.StartInfo.RedirectStandardInput = true;
 
             _process.Start();
+        }
+
+        ~ApplicationRunner()
+        {
+            _process.WaitForExit();
         }
 
         internal void Displays(string expectedText)
@@ -32,5 +37,7 @@ namespace SimpleCalculator.Tests.Acceptance
         {
             _process.StandardInput.WriteLine(inputText);
         }
+
+
     }
 }
