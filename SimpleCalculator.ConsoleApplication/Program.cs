@@ -16,19 +16,11 @@ namespace SimpleCalculator.ConsoleApplication
             int firstNumber = GetNumberInput();
             int secondNumber = GetNumberInput();
 
-            Console.WriteLine("Enter an operator : ");
-            string operation = Console.ReadLine();
-
-            if (operation == "+" || operation == "-")
-            {
-                int result = calculator.Calculate(firstNumber, secondNumber, operation);
-
-                Console.WriteLine("Result = " + result);
-            }
-            else
-            {
-                Console.WriteLine("Error : Unknown Operator");
-            }
+            string operation = GetOperatorInput();
+            
+            int result = calculator.Calculate(firstNumber, secondNumber, operation);
+            
+            Console.WriteLine("Result = " + result);
         }
 
         private static int GetNumberInput()
@@ -50,6 +42,29 @@ namespace SimpleCalculator.ConsoleApplication
             }
 
             return result;
+        }
+
+        private static string GetOperatorInput()
+        {
+            string result = string.Empty;
+
+            while (!ValidOperator(result))
+            {
+                Console.WriteLine("Enter an operator : ");
+                result = Console.ReadLine();
+
+                if (!ValidOperator(result))
+                {
+                    Console.WriteLine("Error : unknown operator");
+                }
+            }
+
+            return result;
+        }
+
+        private static bool ValidOperator(string result)
+        {
+            return result == "+" || result == "-";
         }
     }
 }
