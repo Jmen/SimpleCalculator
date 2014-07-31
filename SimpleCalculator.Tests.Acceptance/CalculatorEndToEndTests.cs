@@ -45,5 +45,15 @@ namespace SimpleCalculator.Tests.Acceptance
             application.UserInputs("99999999999");
             application.DisplayContains("Error");
         }
+
+        [Test]
+        public void CalculatorValidatesNonNumericCharactersForIntergers()
+        {
+            ApplicationRunner application = new ApplicationRunner();
+
+            application.Displays("Enter a number : ");
+            application.UserInputs("a");
+            application.DisplayContains("Error");
+        }
     }
 }
