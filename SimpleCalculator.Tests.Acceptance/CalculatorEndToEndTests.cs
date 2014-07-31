@@ -23,5 +23,15 @@ namespace SimpleCalculator.Tests.Acceptance
             application.UserInputs("+");
             application.Displays("Result = 2");
         }
+
+        [Test]
+        public void CalculatorValidatesOutOfBoundsIntergersForFirstNumber()
+        {
+            ApplicationRunner application = new ApplicationRunner();
+
+            application.Displays("Enter a number : ");
+            application.UserInputs("99999999999");
+            application.DisplayContains("Error");
+        }
     }
 }

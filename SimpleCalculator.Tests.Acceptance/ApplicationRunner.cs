@@ -25,7 +25,7 @@ namespace SimpleCalculator.Tests.Acceptance
 
         ~ApplicationRunner()
         {
-            _process.WaitForExit();
+            _process.Close();
         }
 
         internal void Displays(string expectedText)
@@ -33,11 +33,14 @@ namespace SimpleCalculator.Tests.Acceptance
             Assert.AreEqual(expectedText, _process.StandardOutput.ReadLine());
         }
 
+        internal void DisplayContains(string expectedText)
+        {
+            Assert.IsTrue(_process.StandardOutput.ReadLine().Contains(expectedText));
+        }
+
         internal void UserInputs(string inputText)
         {
             _process.StandardInput.WriteLine(inputText);
         }
-
-
     }
 }
