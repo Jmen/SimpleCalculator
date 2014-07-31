@@ -25,7 +25,10 @@ namespace SimpleCalculator.Tests.Acceptance
 
         ~ApplicationRunner()
         {
-            _process.Kill();
+            if (!_process.HasExited)
+            {
+                _process.Kill();
+            }
         }
 
         internal void Displays(string expectedText)
