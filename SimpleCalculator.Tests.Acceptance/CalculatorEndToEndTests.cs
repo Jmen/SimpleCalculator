@@ -33,5 +33,17 @@ namespace SimpleCalculator.Tests.Acceptance
             application.UserInputs("99999999999");
             application.DisplayContains("Error");
         }
+
+        [Test]
+        public void CalculatorValidatesOutOfBoundsIntergersForSecondNumber()
+        {
+            ApplicationRunner application = new ApplicationRunner();
+
+            application.Displays("Enter a number : ");
+            application.UserInputs("1");
+            application.Displays("Enter a number : ");
+            application.UserInputs("99999999999");
+            application.DisplayContains("Error");
+        }
     }
 }

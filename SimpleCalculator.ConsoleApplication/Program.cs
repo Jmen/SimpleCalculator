@@ -23,15 +23,21 @@ namespace SimpleCalculator.ConsoleApplication
                 Console.WriteLine("Enter a number : ");
                 string secondNumberString = Console.ReadLine();
 
-                Console.WriteLine("Enter an operator : ");
-                string operation = Console.ReadLine();
+                int secondNumber;
 
-            
-                int secondNumber = int.Parse(secondNumberString);
+                if (int.TryParse(secondNumberString, out secondNumber))
+                {
+                    Console.WriteLine("Enter an operator : ");
+                    string operation = Console.ReadLine();
 
-                int result = calculator.Calculate(firstNumber, secondNumber, operation);
-        
-                Console.WriteLine("Result = " + result);
+                    int result = calculator.Calculate(firstNumber, secondNumber, operation);
+
+                    Console.WriteLine("Result = " + result);
+                }
+                else
+                {
+                    Console.WriteLine("Error : input not a valid number - Limit is " + int.MaxValue + " to " + int.MinValue);
+                }
             }
             else
             {
