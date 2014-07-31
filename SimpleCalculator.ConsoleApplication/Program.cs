@@ -19,10 +19,16 @@ namespace SimpleCalculator.ConsoleApplication
             Console.WriteLine("Enter an operator : ");
             string operation = Console.ReadLine();
 
-            int result = calculator.Calculate(firstNumber, secondNumber, operation);
+            if (operation == "+" || operation == "-")
+            {
+                int result = calculator.Calculate(firstNumber, secondNumber, operation);
 
-            Console.WriteLine("Result = " + result);
-
+                Console.WriteLine("Result = " + result);
+            }
+            else
+            {
+                Console.WriteLine("Error : Unknown Operator");
+            }
         }
 
         private static int GetNumberInput()

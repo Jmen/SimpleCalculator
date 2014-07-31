@@ -55,5 +55,19 @@ namespace SimpleCalculator.Tests.Acceptance
             application.UserInputs("a");
             application.DisplayContains("Error");
         }
+
+        [Test]
+        public void CalculatorValidatesOperatorIsKnownCharacter()
+        {
+            ApplicationRunner application = new ApplicationRunner();
+
+            application.Displays("Enter a number : ");
+            application.UserInputs("1");
+            application.Displays("Enter a number : ");
+            application.UserInputs("1");
+            application.Displays("Enter an operator : ");
+            application.UserInputs("a");
+            application.DisplayContains("Error");
+        }
     }
 }
