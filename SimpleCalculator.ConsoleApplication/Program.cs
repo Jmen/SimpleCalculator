@@ -11,8 +11,16 @@ namespace SimpleCalculator.ConsoleApplication
     {
         static void Main(string[] args)
         {
+            Func<int, int, int> addition = (x, y) => x + y;
+            Func<int, int, int> subtraction = (x, y) => x - y;
+
+            OperationsList operations = new OperationsList();
+
+            operations.Add("+", addition);
+            operations.Add("-", subtraction);
+
             FileLogger fileLogger = new FileLogger();
-            Calculator calculator = new Calculator(fileLogger);
+            Calculator calculator = new Calculator(operations, fileLogger);
 
             int firstNumber = GetNumberInput();
             int secondNumber = GetNumberInput();

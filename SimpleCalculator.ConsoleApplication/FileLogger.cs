@@ -11,7 +11,7 @@ namespace SimpleCalculator.ConsoleApplication
     {
         public void Write(string text)
         {
-            File.WriteAllText("SimpleCalculator.log", text);
+            File.WriteAllText("SimpleCalculator.log", text + Environment.NewLine);
         }
     }
 }

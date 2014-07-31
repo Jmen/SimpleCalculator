@@ -5,12 +5,16 @@ using System.Text;
 
 namespace SimpleCalculator.Domain
 {
+    public class OperationsList : Dictionary<string, Func<int, int, int>> { }
+
     public class Calculator
     {
         private ILogger _logger;
+        private OperationsList _operations;
 
-        public Calculator(ILogger logger)
+        public Calculator(OperationsList operations, ILogger logger)
         {
+            _operations = operations;
             _logger = logger;
         }
 
@@ -18,19 +22,11 @@ namespace SimpleCalculator.Domain
         {
             int result = 0;
 
-            switch (operation)
-            {
-                case "+":
-                    result = firstNumber + secondNumber;
-                    break;
-                case "-":
-                    result = firstNumber - secondNumber;
-                    break;
-                default:
-                    throw new Exception("Unknown operator");
-            }
+            Func<int, int, int> function = _operations[operation];
+           
+            result = function(firstNumber, secondNumber);
 
-            _logger.Write("Calculate called " + firstNumber + " " + operation + " " + secondNumber + "Result = " + result);
+            _logger.Write("Calculate called " + firstNumber + " " + operation + " " + secondNumber + " Result = " + result);
 
             return result;
         }
