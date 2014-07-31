@@ -11,7 +11,8 @@ namespace SimpleCalculator.ConsoleApplication
     {
         static void Main(string[] args)
         {
-            Calculator calculator = new Calculator();
+            FileLogger fileLogger = new FileLogger();
+            Calculator calculator = new Calculator(fileLogger);
 
             int firstNumber = GetNumberInput();
             int secondNumber = GetNumberInput();
