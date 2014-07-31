@@ -13,36 +13,37 @@ namespace SimpleCalculator.ConsoleApplication
         {
             Calculator calculator = new Calculator();
 
-            Console.WriteLine("Enter a number : ");
-            string firstNumberString = Console.ReadLine();
+            int firstNumber = GetNumberInput();
+            int secondNumber = GetNumberInput();
 
-            int firstNumber;
+            Console.WriteLine("Enter an operator : ");
+            string operation = Console.ReadLine();
 
-            if(int.TryParse(firstNumberString, out firstNumber))
+            int result = calculator.Calculate(firstNumber, secondNumber, operation);
+
+            Console.WriteLine("Result = " + result);
+
+        }
+
+        private static int GetNumberInput()
+        {
+            int result = 0;
+            bool inputValid = false;
+
+            while (!inputValid)
             {
                 Console.WriteLine("Enter a number : ");
-                string secondNumberString = Console.ReadLine();
+                string numberString = Console.ReadLine();
 
-                int secondNumber;
+                inputValid = int.TryParse(numberString, out result);
 
-                if (int.TryParse(secondNumberString, out secondNumber))
-                {
-                    Console.WriteLine("Enter an operator : ");
-                    string operation = Console.ReadLine();
-
-                    int result = calculator.Calculate(firstNumber, secondNumber, operation);
-
-                    Console.WriteLine("Result = " + result);
-                }
-                else
+                if (!inputValid)
                 {
                     Console.WriteLine("Error : input not a valid number - Limit is " + int.MaxValue + " to " + int.MinValue);
                 }
             }
-            else
-            {
-                Console.WriteLine("Error : input not a valid number - Limit is " + int.MaxValue + " to " + int.MinValue);
-            }
+
+            return result;
         }
     }
 }
