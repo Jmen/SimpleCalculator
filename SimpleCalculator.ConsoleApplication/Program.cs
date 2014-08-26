@@ -9,18 +9,12 @@ namespace SimpleCalculator.ConsoleApplication
 {
     class Program
     {
+        private static readonly Operations _operations = Operations.GetDefault();
+
         static void Main(string[] args)
         {
-            Func<int, int, int> addition = (x, y) => x + y;
-            Func<int, int, int> subtraction = (x, y) => x - y;
-
-            OperationsList operations = new OperationsList();
-
-            operations.Add("+", addition);
-            operations.Add("-", subtraction);
-
             FileLogger fileLogger = new FileLogger();
-            Calculator calculator = new Calculator(operations, fileLogger);
+            Calculator calculator = new Calculator(_operations, fileLogger);
 
             int firstNumber = GetNumberInput();
             int secondNumber = GetNumberInput();
@@ -57,23 +51,18 @@ namespace SimpleCalculator.ConsoleApplication
         {
             string result = string.Empty;
 
-            while (!ValidOperator(result))
+            while (!_operations.Valid(result))
             {
                 Console.WriteLine("Enter an operator : ");
                 result = Console.ReadLine();
 
-                if (!ValidOperator(result))
+                if (!_operations.Valid(result))
                 {
                     Console.WriteLine("Error : unknown operator");
                 }
             }
 
             return result;
-        }
-
-        private static bool ValidOperator(string result)
-        {
-            return result == "+" || result == "-";
         }
     }
 }

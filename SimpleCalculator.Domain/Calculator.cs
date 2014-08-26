@@ -5,14 +5,12 @@ using System.Text;
 
 namespace SimpleCalculator.Domain
 {
-    public class OperationsList : Dictionary<string, Func<int, int, int>> { }
-
     public class Calculator
     {
-        private ILogger _logger;
-        private OperationsList _operations;
+        private readonly ILogger _logger;
+        private readonly Operations _operations;
 
-        public Calculator(OperationsList operations, ILogger logger)
+        public Calculator(Operations operations, ILogger logger)
         {
             _operations = operations;
             _logger = logger;
@@ -20,11 +18,9 @@ namespace SimpleCalculator.Domain
 
         public int Calculate(int firstNumber, int secondNumber, string operation)
         {
-            int result = 0;
+            Func<int, int, int> function = _operations.Get(operation);
 
-            Func<int, int, int> function = _operations[operation];
-           
-            result = function(firstNumber, secondNumber);
+            int result = function(firstNumber, secondNumber);
 
             _logger.Write("Calculate called " + firstNumber + " " + operation + " " + secondNumber + " Result = " + result);
 

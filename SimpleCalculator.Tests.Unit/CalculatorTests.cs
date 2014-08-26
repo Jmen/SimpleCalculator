@@ -17,16 +17,8 @@ namespace SimpleCalculator.Tests.Unit
         [SetUp]
         public void Setup()
         {
-            Func<int, int, int> addition = (x, y) =>  x + y ;
-            Func<int, int, int> subtraction = (x, y) => x - y;
-
-            OperationsList operations = new OperationsList();
-
-            operations.Add("+", addition);
-            operations.Add("-", subtraction);
-
-             _logger = new MockLogger();
-             _calculator = new Calculator(operations, _logger);
+            _logger = new MockLogger();
+            _calculator = new Calculator(Operations.GetDefault(), _logger);
         }
 
         [TestCase(1, "+", 1, 2)]
@@ -54,9 +46,9 @@ namespace SimpleCalculator.Tests.Unit
             int secondNumber = 1;
             string operation = "+";
 
-            int result = _calculator.Calculate(firstNumber, secondNumber, operation);
+            _calculator.Calculate(firstNumber, secondNumber, operation);
 
-            Assert.IsTrue(_logger   .Contains("Result = 2"));
+            Assert.IsTrue(_logger.Contains("Result = 2"));
         }
     }
 }
